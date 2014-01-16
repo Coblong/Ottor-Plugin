@@ -1,0 +1,123 @@
+#ottor {
+  padding-top: 10px;
+  margin-right: 10px;
+  border-top: 1px solid lightgray;
+  text-align: center;
+}
+
+#ottor-login {
+  padding: 0px;
+  padding-top: 10px;
+  margin-right: 10px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  text-align: center;
+}
+
+#agent {
+  width: 95%;
+  margin-left: 5px;  
+}
+
+#note {
+  width: 95%;
+  margin-left: 5px;  
+}
+
+#status-buttons {
+  padding: 2px;
+  margin-bottom: 2px;
+  text-align:right;
+}
+
+#ottor-header {
+  display: table-row;
+  width: 100%;
+}
+
+#buttons {
+  text-align:right;
+  display: table-cell;  
+}
+
+#ottor-link {
+  vertical-align: top;
+  text-align: left;
+  width: 100%;
+  padding: 5px;
+  display: table-cell;
+}
+
+table {
+  width: 100%;
+  text-align: left;      
+  background-color: $well-colour;
+  padding: 0px;        
+  margin: 0px; 
+  margin-bottom: 5px;
+}
+
+td {
+  padding: 0px;
+}
+
+.rows {
+  padding: 2px;
+  border: 1px solid lightgray;
+}
+
+ul {
+  list-style: none;
+  margin-right: 5px;  
+}
+
+li {
+  margin-right: 5px;
+  font-size: 11px;
+}
+
+.status_change {
+  color: lightblue;
+}
+
+.price_change {
+  background: lightpink;
+}
+
+.sstc_change {
+  background: palegreen;
+}
+
+.offer {
+  background: lightyellow;
+}
+
+.viewing {
+  color: darkcyan;
+}
+
+.auto {
+  color: lightgray;
+}
+
+#ottorLoginError {
+  color: red;
+  text-align: center;
+  width: 100%;
+}
+
+input {
+  border: 0px;
+}
+
+textarea {
+  border: 0px;
+}
+
+#closePropertyButton {
+  cursor: pointer;
+}
+
+#reopenPropertyButton {
+  cursor: pointer;
+}

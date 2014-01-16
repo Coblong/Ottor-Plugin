@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jquery-2.0.3.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $(this).hide();
+  });
+});
+function lookForAgent() {
+  var b = $('#branchaddress').text();
+  alert ('Welcome to Ottor - ' + b);
+  alert ($('#branchaddress').length)
+  alert ($('#branchaddressa').length)
+}
+</script>
+</head>
+<body>
+
+<p>If you click on me, I will disappear.</p>
+<p>Click me away!</p>
+<p>Click me too!</p>
+<div id="branchaddress">poes</div>
+</body>
+</html>
+
+<script type="text/javascript">
+lookForAgent();
+</script>

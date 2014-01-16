@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "Ottor System",
+  "description": "This is the Ottor system extension.",
+  "version": "2.0",
+  "permissions": [
+    "http://localhost/*",
+    "http://ottor-live.herokuapp.com/*",
+    "http://ottor-stage.herokuapp.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://www.rightmove.co.uk/*","http://localhost:3000/*","https://secure-lake-8340.herokuapp.com/"],
+      "all_frames": true,
+      "css": ["ottor.css"],
+      "js": ["jquery-2.0.3.min.js", "ottor.js"]
+    }
+  ], 
+  "web_accessible_resources": [
+    "ottor.css",
+    "ottor.png",
+    "close.png",
+    "reopen.png"
+  ]
+}
