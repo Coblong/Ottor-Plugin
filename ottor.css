@@ -1,123 +1,162 @@
-#ottor {
-  padding-top: 10px;
-  margin-right: 10px;
-  border-top: 1px solid lightgray;
-  text-align: center;
-}
-
-#ottor-login {
-  padding: 0px;
-  padding-top: 10px;
-  margin-right: 10px;
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
-  text-align: center;
-}
-
-#agent {
-  width: 95%;
-  margin-left: 5px;  
-}
-
-#note {
-  width: 95%;
-  margin-left: 5px;  
-}
-
-#status-buttons {
-  padding: 2px;
-  margin-bottom: 2px;
-  text-align:right;
-}
-
-#ottor-header {
-  display: table-row;
+#ottor-main {
   width: 100%;
 }
 
-#buttons {
-  text-align:right;
-  display: table-cell;  
-}
-
-#ottor-link {
-  vertical-align: top;
-  text-align: left;
-  width: 100%;
-  padding: 5px;
-  display: table-cell;
-}
-
-table {
-  width: 100%;
-  text-align: left;      
-  background-color: $well-colour;
-  padding: 0px;        
-  margin: 0px; 
-  margin-bottom: 5px;
-}
-
-td {
-  padding: 0px;
-}
-
-.rows {
-  padding: 2px;
-  border: 1px solid lightgray;
-}
-
-ul {
-  list-style: none;
-  margin-right: 5px;  
-}
-
-li {
-  margin-right: 5px;
-  font-size: 11px;
-}
-
-.status_change {
-  color: lightblue;
-}
-
-.price_change {
-  background: lightpink;
-}
-
-.sstc_change {
-  background: palegreen;
-}
-
-.offer {
-  background: lightyellow;
-}
-
-.viewing {
-  color: darkcyan;
-}
-
-.auto {
-  color: lightgray;
-}
-
-#ottorLoginError {
+#ottor-login-error {
   color: red;
   text-align: center;
   width: 100%;
 }
 
-input {
-  border: 0px;
+#ottor-login-table {
+  width: 100%;
 }
 
-textarea {
-  border: 0px;
+.ottor {
+  border: none;
 }
 
-#closePropertyButton {
+.ottor-input {
+  width: 100%;
+  padding: 0px;        
+  margin: 0px; 
+  height: 18px;
+  border: 0.1em solid lightgray;
+}
+
+.ottor-textarea {
+  padding: 0px;        
+  margin: 0px;
+  border: none;
+  height: 70px;
+  border: 0.1em solid lightgray;
+}
+
+#ottor-password {
+  width: 100%;
+  padding: 0px;        
+  margin: 0px; 
+}
+
+.ottor-btn {
+  border: none;
+  background: inherit;  
   cursor: pointer;
 }
 
-#reopenPropertyButton {
+.ottor-link {
+  font-weight: bold;
+  color: black;
+  width: 100%;
+  display: table-cell;  
+}
+
+#ottor-buttons {
+  text-align:right;
+  display: table-cell;  
+}
+
+.ottor-footer {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid white;
+  width: 100%;
+}
+
+#ottor-header {
+  display: table-row;
+}
+
+#ottor-note  {
+  width: 100%;
+  padding: 0px;    
+  margin: 0px;    
+}
+
+.update-status-btn {
+  margin: 2px;
+  border:1px solid gray;
+  border-radius: 3px;
+  box-shadow:inset 0px -1px 0px 0px gray;  
+  font-family:Arial;
+  font-size:14px;
+  font-weight:bold;
+  height:28px;
+  line-height:18px;
+  min-width:60px;
+  text-shadow:1px 1px 0px white;
+  background: inherit;
+}
+
+#add-note-btn {
+  margin: 2px;
+  border:1px solid gray;
+  border-radius: 3px;
+  box-shadow:inset 0px -1px 0px 0px gray;  
+  font-family:Arial;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  height:28px;
+  line-height:18px;
+  min-width:60px;
+  background: #FF6600;
+}
+
+#ottor-close-btn {
   cursor: pointer;
+}
+
+#ottor-reopen-btn {
+  cursor: pointer;
+}
+
+.ottor-note-ul {
+  list-style: none;
+  padding: 0px;    
+  margin: 0px;    
+}
+
+.ottor-note-li {
+  list-style: none;
+  padding: 5px;    
+  margin: 2px 0px;    
+  border: 1px solid lightgray;  
+  background: mintcream;  
+}
+
+.ottor-note-details-ul {
+  list-style: none;
+  padding: 0px;    
+  margin: 0px;      
+}
+
+.ottor-note-details-li {
+  list-style: none;
+  padding: 2px;    
+  margin: 0px;    
+  font-size: 11px;
+}
+
+.ottor-note-status-change {
+  color: lightblue;
+}
+
+.ottor-note-price-change {
+  background: lightpink;
+}
+
+.ottor-note-sstc-change {
+  background: palegreen;
+}
+
+.ottor-note-offer {
+  background: lightyellow;
+}
+
+.ottor-note-viewing {
+  color: darkcyan;
+}
+
+.ottor-note-auto {
+  color: lightgray;
 }
