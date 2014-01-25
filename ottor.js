@@ -1,10 +1,10 @@
-var ottor_url = "http://localhost:3000/"
+//var ottor_url = "http://localhost:3000/"
 //var ottor_url = "http://ottor-live.herokuapp.com/"
-//var ottor_url = "http://ottor-stage.herokuapp.com/"
+var ottor_url = "http://ottor-stage.herokuapp.com/"
 
-var loadPropertyUrl = ottor_url + "external/property"
+var loadPropertyUrl = ottor_url + "find_for_plugin"
 var loginUrl = ottor_url + "/quietsession"
-var savePropertyUrl = ottor_url + "/properties"
+var savePropertyUrl = ottor_url + "save_via_plugin"
 var saveNoteUrl = ottor_url + "/notes"
 
 var mainAgentDivId = "#secondaryAgentDetails"
@@ -61,12 +61,8 @@ function showLogin() {
  *  Getters will need changing when rightmove update their system                       *
  ****************************************************************************************/
 function getUrl() {    
-    url = window.location.pathname;
+    url = $(location).attr('hostname') + window.location.pathname; 
     console.log("url=" + url);
-}
-function getHostname() {
-    hostname = $(location).attr('hostname'); 
-    console.log("hostname=" + hostname)
 }
 function getAddress() {
     address = $('.property-header-bedroom-and-price address').text().trim();
@@ -89,14 +85,15 @@ function getAskingPrice() {
     asking_price = $('.property-header-price strong').text().trim();        
     console.log("asking_price=" + asking_price)
 }
-function getSSTC() {
-    qualifier = $('.property-header-qualifier').text();        
-    if (qualifier == "Sold STC" || qualifier == "Under Offer") {
+function getPriceQualifier() {
+    price_qualifier = $('.property-header-qualifier').text();        
+    console.log("qualifier=" + price_qualifier)
+}
+function getSSTC() {    
+    if (price_qualifier == "Sold STC" || price_qualifier == "Under Offer") {
         sstc = true;
     } else {
         sstc = false;
-        asking_price = qualifier + ' ' + asking_price;
-        console.log("updated asking_price=" + asking_price)
     }
     console.log("sstc=" + sstc)    
 }
@@ -111,7 +108,7 @@ function getImageUrl() {
 function propertyDetailsPage() {
     if ($("body").hasClass("property-details")) {
         return true;
-    }
+    }    
     return false;
 }
 /*  Try to load the property from ottor */ 
@@ -119,12 +116,12 @@ function runForPropertyDetails() {
     console.log("Running in property details mode")
     console.log("Grab the property details from this page")
     getUrl();
-    getHostname();
     getAddress();
     getPostCode();
     getEstateAgent();
     getBranch();
     getAskingPrice();
+    getPriceQualifier();
     getSSTC();
     getImageUrl();        
     
@@ -292,7 +289,7 @@ function saveProperty() {
     $.ajax({
         type: "POST",
         url: savePropertyUrl,
-        data: 'hostname=' + hostname + '&closed=' + closed_yn + '&url=' + url +'&address=' + address + '&post_code=' + post_code + '&estate_agent=' + estate_agent +'&branch=' + branch +'&asking_price=' + asking_price +'&sstc=' + sstc + '&status_id=' + status_id + '&image_url=' + image_url,
+        data: 'closed=' + closed_yn + '&url=' + url +'&address=' + address + '&post_code=' + post_code + '&estate_agent=' + estate_agent +'&branch=' + branch +'&asking_price=' + asking_price + '&price_qualifier=' + price_qualifier + '&sstc=' + sstc + '&status_id=' + status_id + '&image_url=' + image_url,
         dataType: "json",
         error: function(xhr, status, error) {
             console.log('Unable to save property');

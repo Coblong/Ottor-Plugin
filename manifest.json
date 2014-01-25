@@ -3,7 +3,7 @@
 
   "name": "Ottor System",
   "description": "This is the Ottor system extension.",
-  "version": "2.0",
+  "version": "2.3",
   "icons": {"16":"ottor-16x16.png","48":"ottor-32x32.png","128":"ottor-96x96.png"},
   "permissions": [
     "http://localhost/*",
