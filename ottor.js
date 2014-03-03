@@ -1,7 +1,8 @@
 //var ottor_url = "http://localhost:3000/"
-//var ottor_url = "http://ottor-live.herokuapp.com/"
-var ottor_url = "http://ottor-stage.herokuapp.com/"
+var ottor_url = "http://ottor.herokuapp.com/"
+//var ottor_url = "http://ottor-stage.herokuapp.com/"
 
+var loadPropertiesUrl = ottor_url + "properties?format=short"
 var loadPropertyUrl = ottor_url + "find_for_plugin"
 var loginUrl = ottor_url + "/quietsession"
 var savePropertyUrl = ottor_url + "save_via_plugin"
@@ -165,12 +166,12 @@ function sendUpdates() {
         console.log('No updates')        
     }
 }
-function showStatusButtons() {
+function showStatusButtons(id) {
     console.log('Showing status buttons');
-    if (property_id < 0) {
+    if (id < 0) {
         html += "<div id='ottor-header'><div class='ottor-link'><a href='" + ottor_url + "' target='_new'>View on Ottor</a></div>";    
     } else {
-        html += "<div id='ottor-header'><div class='ottor-link'><a href='" + ottor_url + "properties/" + property_id + "' target='_new'>View on Ottor</a></div>";    
+        html += "<div id='ottor-header'><div class='ottor-link'><a href='" + ottor_url + "properties/" + id + "' target='_new'>View on Ottor</a></div>";    
     }    
     html += "<div id='ottor-buttons'>";    
     if(closed_yn){
@@ -178,7 +179,7 @@ function showStatusButtons() {
     } else {
         html += "<img width='24' title='Close' id='ottor-close-btn' src='" + chrome.extension.getURL("close.png") + "'/></div></div>";            
         html += "<div id='status-buttons'>";
-        $.each( $.parseJSON(ottorJSON['statuses']), function( index, value ){        
+        $.each( $.parseJSON(ottorJSON.statuses), function( index, value ){        
             if (status_id > 0) {
                 if (status_id == value['id']) {    
                     html += "<button id='" + value['id'] + "' class='update-status-btn' style='background:#" + value['colour'] + "'>" + value['description'] + "</button>";
@@ -195,7 +196,7 @@ function showStatusButtons() {
 function showProperty() {    
     console.log('Showing property details from Ottor');
     html = "<div id='ottor-main'><div>";    
-    showStatusButtons();            
+    showStatusButtons(property_id);            
     if (status_id > 0) {
         if(!closed_yn) {
             html += "<table>";    
@@ -314,20 +315,35 @@ function propertyListPage() {
 /*  Flag the ottor properties in the list with the ottor status */
 function runForPropertyList() {   
     console.log("Running ottor in property list mode")
-    if (loggedIn()) {
-        showPropertyList();
-    } else {
-        showLogin();
-    }
-}
-/*  Flag the properties saved in Ottor */ 
-function showPropertyList() {    
-    console.log("Load properties from Ottor and flag the corresponding properties in this page")
-    loadOttorProperties();    
-}
-/*  Load Ottor properties */ 
-function loadOttorProperties() {    
     console.log("load the properties from Ottor")
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", loadPropertiesUrl, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        if (xhr.status==401) {
+            showLogin();            
+        } else {
+            ottorJSON = JSON.parse(xhr.responseText);
+            $.each( $.parseJSON(ottorJSON['properties']), function( index, value ){                        
+                if ($("#" + value["summary_id"]).length > 0) {
+                    console.log("Found " + value.id);                    
+                    closed_yn = value.closed;
+                    console.log("Closed = " + closed_yn);
+                    html = "<div class='ottor-summary'><div>";    
+                    html += "<a href='" + ottor_url + "properties/" + value.id + "' target='_new'>"
+                    if (closed_yn) {
+                        html += "This property is currently CLOSED on Ottor"
+                    } else {
+                        html += "This property is currently " + value.status_name + " on Ottor"
+                    }
+                    html += "</a></div></div>";
+                    $(html).insertBefore($("#" + value["summary_id"]).find(".moreinfo" ));
+                }
+            });  
+        }
+      }
+    }
+    xhr.send();    
 }
 /****************************************************************************************
  *  Run the Ottor pluggin                                                               *

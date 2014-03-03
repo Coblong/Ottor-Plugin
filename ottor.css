@@ -160,3 +160,10 @@
 .ottor-note-auto {
   color: lightgray;
 }
+
+.ottor-summary {
+  border: 1px solid green;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+}
